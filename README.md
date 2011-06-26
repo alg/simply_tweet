@@ -1,4 +1,4 @@
-Simple Tweet
+Simply Tweet
 ============
 
 Simple library that lets you authenticate your app with Twitter using xAuth and

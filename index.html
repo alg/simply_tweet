@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <style type="text/css" media="screen">
+      form { margin: 2em 0; }
+      form div { margin: 0 0 .5em; }
+      label { display: block; }
+    </style>
+  </head>
+  <body>
+    <form action='#' id='auth'>
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" value="" id="username">
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" value="" id="password">
+      </div>
+      <div>
+        <input type="submit" value="Authenticate" />
+      </div>
+    </form>
+  
+    <form action='#' id='tweet'>
+      <div>
+        <label for="status">Update Status:</label>
+        <input type="text" name="status" value="" id="status">
+      </div>
+      <div>
+        <input type="submit" value="Tweet" />
+      </div>
+    </form>
+
+    <script src="lib/sha1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/oauth.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/simply_tweet.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8">
+      var $st = new SimplyTweet('ysnQsrkFnYSmjhKTkis1CA', 'WcxkXSgRuhGvhbjNGsDjVVvnRuKz1Q99TbvXYUY8');
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var authForm  = document.querySelector('form#auth');
+        var usernameE = authForm.querySelector('#username');
+        var passwordE = authForm.querySelector('#password');
+        var tweetForm = document.querySelector('form#tweet');
+        var statusE   = tweetForm.querySelector('#status');
+
+        var tweetFormS = tweetForm.style;
+        var authFormS  = authForm.style;
+
+        tweetFormS.display = "none";
+
+        authForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          $st.authenticate(usernameE.value, passwordE.value, function() {
+            authFormS.display = "none";
+            tweetFormS.display = "block";
+          }, function(http) {
+            alert(http.responseText);
+          });
+        });
+
+        tweetForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          $st.updateStatus(statusE.value, function() {
+            statusE.value = "";
+            statusE.focus();
+          }, function() {
+            alert('failure');
+          });
+        })
+      });      
+    </script>
+  </body>
+</html>

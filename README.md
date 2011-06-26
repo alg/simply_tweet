@@ -7,19 +7,19 @@ then update the status. That's all it does at the moment.
 Sample usage
 ------------
 
-# Add sha1.js, oauth.js and simple_tweet.js to your project
+- Add sha1.js, oauth.js and simple_tweet.js to your project
 
-# Initialize Twitter instance with your consumer key and secret:
+- Initialize Twitter instance with your consumer key and secret:
     var st = new SimplyTweet(<consumerKey>, <consumerSecret>);
+      
+- Authenticate user with his Twitter username and password. Update his status afterwards.
 
-# Authenticate user with his Twitter username and password. Update his status afterwards.
-
-    var failureCallback = function(msg) { alert(msg); }
-    st.authenticate('mark', 'smith', function() {
-      st.updateStatus('new status', function() {
-        alert('Status updated');
-      }, failureCallback);
-    }, failureCallback);
+        var failureCallback = function(msg) { alert(msg); }
+        st.authenticate('mark', 'smith', function() {
+          st.updateStatus('new status', function() {
+            alert('Status updated');
+          }, failureCallback);
+        }, failureCallback);
 
 License
 -------

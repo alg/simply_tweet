@@ -7,10 +7,11 @@ then update the status. That's all it does at the moment.
 Sample usage
 ------------
 
-- Add sha1.js, oauth.js and simple_tweet.js to your project
+- Add `sha1.js`, `oauth.js` and `simply_tweet.js` to your project
 
 - Initialize Twitter instance with your consumer key and secret:
-    var st = new SimplyTweet(<consumerKey>, <consumerSecret>);
+
+        var st = new SimplyTweet(<consumerKey>, <consumerSecret>);
       
 - Authenticate user with his Twitter username and password. Update his status afterwards.
 
